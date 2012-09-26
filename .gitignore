@@ -7,3 +7,6 @@ test/js/*/*/*.js
 /build/chaplin-*
 
 .DS_Store
+*.swp
+*.swo
+!.gitignore

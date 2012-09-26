@@ -3,15 +3,14 @@ require 'fileutils'
 # Replace AMD definitions to CommonJS.
 
 GLOBALS = <<GLOBALS
-require.define
-  'jquery': (require, exports, module) -> module.exports = $
-  'underscore': (require, exports, module) -> module.exports = _
-  'backbone': (require, exports, module) -> module.exports = Backbone
+require.define 'jquery', (require, module, exports, __dirname, __filename) -> module.exports = $
+require.define 'underscore', (require, module, exports, __dirname, __filename) -> module.exports = _
+require.define 'backbone', (require, module, exports, __dirname, __filename) -> module.exports = Backbone
 
 GLOBALS
 
 def make_module_definition(name, source)
-  "require.define #{name}: (exports, require, module) ->#{source}"
+  "require.define #{name}, (require, module, exports, __dirname, __filename) ->#{source}"
 end
 
 def convert_one(raw_modules = '', raw_module_names = '')
