@@ -95,7 +95,7 @@ define [
       if define?.amd
         require [path], handler
       else
-        handler require path
+        handler require "/#{path}"
 
     # Handler for the controller lazy-loading
     controllerLoaded: (controllerName, action, params, ControllerConstructor) ->
